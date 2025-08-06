@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App - Backend API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .status {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #28a745;
+        }
+
+        .status h3 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .api-section {
+            margin-bottom: 30px;
+        }
+
+        .api-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .endpoint {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e9ecef;
+        }
+
+        .endpoint h4 {
+            color: #495057;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .endpoint p {
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .get { background: #d4edda; color: #155724; }
+        .post { background: #d1ecf1; color: #0c5460; }
+
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .test-button:hover {
+            background: #0056b3;
+        }
+
+        .response {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .telegram-info {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .telegram-info h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+
+        .telegram-info p {
+            color: #424242;
+            margin-bottom: 8px;
+        }
+
+        .bot-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .bot-avatar {
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Telegram Mini App</h1>
+            <p>Backend API Testing Interface</p>
+        </div>
+
+        <div class="content">
+            <div class="status">
+                <h3>✅ API Status</h3>
+                <p>Backend server is running and ready to handle Telegram Mini App requests.</p>
+            </div>
+
+            <div class="telegram-info">
+                <h3>📱 Telegram Bot Information</h3>
+                <p><strong>Bot Name:</strong> efsob</p>
+                <p><strong>Bot Username:</strong> @efsob_bot</p>
+                <p><strong>Environment:</strong> Development</p>
+                <div class="bot-info">
+                    <div class="bot-avatar">E</div>
+                    <div>
+                        <strong>efsob</strong><br>
+                        <small>@efsob_bot</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-section">
+                <h3>🔗 API Endpoints</h3>
+                
+                <div class="endpoint">
+                    <h4><span class="method get">GET</span> /</h4>
+                    <p>Root endpoint - API status and information</p>
+                    <button class="test-button" onclick="testEndpoint('GET', '/')">Test</button>
+                    <div id="response-root" class="response" style="display: none;"></div>
+                </div>
+
+                <div class="endpoint">
+                    <h4><span class="method get">GET</span> /health</h4>
+                    <p>Health check endpoint</p>
+                    <button class="test-button" onclick="testEndpoint('GET', '/health')">Test</button>
+                    <div id="response-health" class="response" style="display: none;"></div>
+                </div>
+
+                <div class="endpoint">
+                    <h4><span class="method post">POST</span> /api/telegram/validate</h4>
+                    <p>Validate Telegram Web App init data</p>
+                    <button class="test-button" onclick="testTelegramValidation()">Test</button>
+                    <div id="response-validate" class="response" style="display: none;"></div>
+                </div>
+
+                <div class="endpoint">
+                    <h4><span class="method post">POST</span> /api/auth/login</h4>
+                    <p>Authenticate user with Telegram data</p>
+                    <button class="test-button" onclick="testLogin()">Test</button>
+                    <div id="response-login" class="response" style="display: none;"></div>
+                </div>
+
+                <div class="endpoint">
+                    <h4><span class="method get">GET</span> /api/protected</h4>
+                    <p>Protected route example (requires authentication)</p>
+                    <button class="test-button" onclick="testProtected()">Test</button>
+                    <div id="response-protected" class="response" style="display: none;"></div>
+                </div>
+
+                <div class="endpoint">
+                    <h4><span class="method get">GET</span> /api/user/profile</h4>
+                    <p>Get user profile (requires authentication)</p>
+                    <button class="test-button" onclick="testProfile()">Test</button>
+                    <div id="response-profile" class="response" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let authToken = null;
+
+        async function testEndpoint(method, endpoint) {
+            try {
+                const response = await fetch(endpoint, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                showResponse(`response-${endpoint.replace('/', '').replace('api/', '')}`, {
+                    status: response.status,
+                    data: data
+                });
+            } catch (error) {
+                showResponse(`response-${endpoint.replace('/', '').replace('api/', '')}`, {
+                    error: error.message
+                });
+            }
+        }
+
+        async function testTelegramValidation() {
+            // Sample Telegram init data (for testing only)
+            const sampleInitData = 'user=%7B%22id%22%3A123456789%2C%22first_name%22%3A%22Test%22%2C%22last_name%22%3A%22User%22%2C%22username%22%3A%22testuser%22%2C%22language_code%22%3A%22en%22%2C%22is_premium%22%3Afalse%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1640995200&hash=test_hash';
+            
+            try {
+                const response = await fetch('/api/telegram/validate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ initData: sampleInitData })
+                });
+                
+                const data = await response.json();
+                showResponse('response-validate', {
+                    status: response.status,
+                    data: data
+                });
+            } catch (error) {
+                showResponse('response-validate', {
+                    error: error.message
+                });
+            }
+        }
+
+        async function testLogin() {
+            // Sample Telegram init data (for testing only)
+            const sampleInitData = 'user=%7B%22id%22%3A123456789%2C%22first_name%22%3A%22Test%22%2C%22last_name%22%3A%22User%22%2C%22username%22%3A%22testuser%22%2C%22language_code%22%3A%22en%22%2C%22is_premium%22%3Afalse%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1640995200&hash=test_hash';
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ initData: sampleInitData })
+                });
+                
+                const data = await response.json();
+                if (data.token) {
+                    authToken = data.token;
+                }
+                showResponse('response-login', {
+                    status: response.status,
+                    data: data
+                });
+            } catch (error) {
+                showResponse('response-login', {
+                    error: error.message
+                });
+            }
+        }
+
+        async function testProtected() {
+            if (!authToken) {
+                showResponse('response-protected', {
+                    error: 'No authentication token. Please login first.'
+                });
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/protected', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                showResponse('response-protected', {
+                    status: response.status,
+                    data: data
+                });
+            } catch (error) {
+                showResponse('response-protected', {
+                    error: error.message
+                });
+            }
+        }
+
+        async function testProfile() {
+            if (!authToken) {
+                showResponse('response-profile', {
+                    error: 'No authentication token. Please login first.'
+                });
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/user/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                showResponse('response-profile', {
+                    status: response.status,
+                    data: data
+                });
+            } catch (error) {
+                showResponse('response-profile', {
+                    error: error.message
+                });
+            }
+        }
+
+        function showResponse(elementId, data) {
+            const element = document.getElementById(elementId);
+            element.textContent = JSON.stringify(data, null, 2);
+            element.style.display = 'block';
+        }
+
+        // Test root endpoint on page load
+        window.onload = function() {
+            testEndpoint('GET', '/');
+        };
+    </script>
+</body>
+</html> 

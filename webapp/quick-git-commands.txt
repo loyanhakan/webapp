@@ -1,0 +1,30 @@
+🚀 HIZLI GİT KOMUTLARI - Telegram Mini App Backend
+
+# 1. Git konfigürasyonu (ilk kez ise)
+git config --global user.name "Loyan Hakan"
+git config --global user.email "your-email@example.com"
+
+# 2. Proje klasörüne git
+cd C:\Users\loyan\Desktop\webapp
+
+# 3. Git başlat
+git init
+
+# 4. Remote ekle
+git remote add origin https://github.com/loyanhakan/webapp.git
+
+# 5. Dosyaları ekle
+git add .
+
+# 6. İlk commit
+git commit -m "🚀 Initial commit: Telegram Mini App Backend API"
+
+# 7. Main branch oluştur
+git branch -M main
+
+# 8. GitHub'a push
+git push -u origin main
+
+---
+✅ BAŞARILI! Projeniz GitHub'a yüklendi.
+📱 Sonraki adım: Railway'e deploy et 

@@ -1,0 +1,79 @@
+# 🚀 Telegram Mini App Projesi - Gerekli Bilgiler
+
+## 📋 İhtiyaç Duyulan Bilgiler ve Credentials
+
+### 1. 🔑 Telegram Bot Bilgileri
+- **Bot Token:** 8475749598:AAHZ0NfuBj5iNLecdb3Us_Sipx2_JQHubH0
+- **Bot Username:** @efsob_bot
+- **Bot Name:** efsob
+
+### 2. 🗄️ Database Bilgileri (Neon.tech)
+- **Database URL:** postgresql://neondb_owner:npg_Z7v5QfaVSYkz@ep-plain-cell-a8nza7z9-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require
+- **Database Name:** neondb
+- **Database Host:** ep-plain-cell-a8nza7z9-pooler.eastus2.azure.neon.tech
+- **Database Port:** 5432
+- **Database Username:** neondb_owner
+- **Database Password:** npg_Z7v5QfaVSYkz
+
+### 3. 🌐 Deployment Bilgileri (Railway)
+- **Railway Project Name:** skillful-amazement
+- **Railway API Token:** 95fabd98-a5be-4157-b5d6-055af4c1096a
+- **Custom Domain:** (İsteğe bağlı)
+
+### 4. 🔐 JWT ve Güvenlik
+- **JWT Secret Key:** 87489f21ec74194e865d65f1caf1fd
+- **JWT Expiration Time:** 7d
+
+### 5. 📱 Telegram Mini App Ayarları
+- **Web App URL:** (Railway'den gelecek production URL)
+- **Web App Title:** (Mini App'in başlığı)
+- **Web App Description:** (Mini App açıklaması)
+- **Web App Short Name:** (Kısa isim)
+
+### 6. 🛠️ Development Bilgileri
+- **Node.js Version:** 20
+- **Package Manager:** npm
+- **Git Repository:** https://github.com/loyanhakan/webapp
+
+### 7. 📊 Environment Variables (.env)
+```
+# Telegram Bot
+BOT_TOKEN=8475749598:AAHZ0NfuBj5iNLecdb3Us_Sipx2_JQHubH0
+BOT_USERNAME=@efsob_bot
+
+# Database
+DATABASE_URL=postgresql://neondb_owner:npg_Z7v5QfaVSYkz@ep-plain-cell-a8nza7z9-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require
+
+# JWT
+JWT_SECRET=87489f21ec74194e865d65f1caf1fd
+JWT_EXPIRES_IN=7d
+
+# App Settings
+NODE_ENV=production
+PORT=3000
+CORS_ORIGIN=https://skillful-amazement-production.up.railway.app
+
+# Railway
+RAILWAY_TOKEN=95fabd98-a5be-4157-b5d6-055af4c1096a
+```
+
+### 8. 📋 Kurulum Adımları
+1. **Neon.tech'te PostgreSQL database oluştur**
+2. **Telegram'da @BotFather ile bot oluştur**
+3. **Railway hesabı oluştur ve proje başlat**
+4. **GitHub'da repository oluştur**
+5. **Tüm credentials'ları güvenli bir yerde sakla**
+
+### 9. ⚠️ Güvenlik Notları
+- Tüm API key'leri ve token'ları asla public repository'de paylaşma
+- .env dosyasını .gitignore'a ekle
+- Production'da environment variables kullan
+- JWT secret'ı güçlü ve random oluştur
+
+### 10. 📞 İletişim
+- **Proje Sahibi:** [Adınız]
+- **Email:** [Email adresiniz]
+- **Telegram:** [Telegram username'iniz]
+
+---
+**Not:** Bu bilgileri topladıktan sonra projeyi başlatabiliriz! 🎯 
